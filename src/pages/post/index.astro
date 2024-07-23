@@ -1,0 +1,79 @@
+---
+
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+
+export async function getAllPosts(locale: string = "*") {
+  const blogPosts = await getCollection("posts", ({ id }) => {
+    return locale === "*" ? true : id.startsWith(`${locale}/`);
+  });
+
+  return blogPosts.map((entry) => ({
+    params: { slug: entry.data.page_url },
+    props: { entry },
+  }));
+}
+
+const allPosts = await getAllPosts("en");
+---
+
+<Layout title="Welcome to Astro CMS">
+	<main>
+		<h1>Posts</h1>
+
+        {allPosts.map((post) => (
+            <div class="post">
+                <img src={post.props.entry.data.thumbnail} alt={post.props.entry.data.title}/>
+                <div class="content">
+                    <a class="header" href={"/post/" + post.props.entry.slug}>
+                        <h2>{post.props.entry.data.title}</h2>
+                        <pre> ➜ </pre>
+                        <small>{post.props.entry.slug}</small>
+                    </a>
+                    <div class="body">
+                        <code>
+                            {JSON.stringify(post)}
+                        </code>
+                    </div>
+                </div>    
+            </div>
+            <br/>
+        ))}
+	</main>
+</Layout>
+
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		font-size: 18px;
+		line-height: 1.6;
+	}
+
+    main img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .post {
+        display: flex;
+    }
+
+    .content {
+        margin-left: 1rem;
+    }
+
+    .header {
+        display: flex;
+        align-items: baseline;
+        text-decoration: none;
+    }
+
+    .header small {
+        padding-left: 8px;
+    }
+
+</style>

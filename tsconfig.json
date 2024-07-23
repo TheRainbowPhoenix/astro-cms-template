@@ -1,20 +1,23 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "skipLibCheck": true,
-    "strict": true,
-    "importsNotUsedAsValues": "remove",
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "includes": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", ".vercel"]
+    "baseUrl": ".",
+    "paths": {
+      // @prefix = framework specific files (.astro)
+      "@assets/*": ["src/assets/*"],
+      "@content/*": ["src/content/*"],
+      "@components/*": ["src/components/*"],
+      "@cms/*": ["src/cms/*"],
+      "@layouts/*": ["src/layouts/*"],
+      // $prefix = JS files / lib
+      "$lib/*": ["src/lib/*"], 
+      "$helpers/*": ["src/helpers/*"]
+    }
+  }
 }

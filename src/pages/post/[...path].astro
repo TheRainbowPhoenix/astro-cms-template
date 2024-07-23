@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("posts", ({ id }) => {
+    return true;
+  });
+
+  return blogPosts.map((entry) => ({
+    params: { path: entry.slug},
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title="Welcome to Astro CMS">
+  <main>
+    <h1>{entry.data.title}</h1>
+    <Content />
+
+    <a class="header" href={"/post/"}>
+        <pre> ⟵ </pre>
+        Retour
+    </a>
+    
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  main img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .post {
+    display: flex;
+  }
+
+  .content {
+    margin-left: 1rem;
+  }
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+  }
+
+  .header small {
+    padding-left: 8px;
+  }
+</style>
