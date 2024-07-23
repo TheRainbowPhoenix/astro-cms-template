@@ -4,7 +4,7 @@ import posts from "./collections/posts";
 
 const gitBackend: CmsBackend = {
   name: "git-gateway",
-  branch: "master",
+  branch: "main",
   commit_messages: {
     create: "chore: :memo: Create {{collection}} “{{slug}}”",
     update: "chore: :memo: Update {{collection}} “{{slug}}”",
@@ -16,8 +16,8 @@ const gitBackend: CmsBackend = {
 
 const vercelProxyGithub: CmsBackend = {
     name: 'github', // "proxy"
-    repo: "TheRainbowPhoenix/netlify-cms-oauth-github",
-    branch: "master",
+    repo: "TheRainbowPhoenix/astro-cms-template",
+    branch: "main",
     base_url: "https://netlify-cms-oauth-github.vercel.app", // please refer to the guide on how to set this up
     auth_endpoint: "api/auth",
     commit_messages: {
