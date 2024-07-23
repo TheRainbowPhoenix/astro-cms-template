@@ -16,7 +16,7 @@ const gitBackend: CmsBackend = {
 
 const vercelProxyGithub: CmsBackend = {
     name: 'github', // "proxy"
-    repo: "TheRainbowPhoenix/astro-cms-template",
+    repo: "TheRainbowPhoenix/netlify-cms-oauth-github",
     branch: "master",
     base_url: "https://netlify-cms-oauth-github.vercel.app", // please refer to the guide on how to set this up
     auth_endpoint: "api/auth",
