@@ -1,4 +1,5 @@
 ---
+import { urlFor } from "src/utils";
 import Card from "../components/Card.astro";
 import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
@@ -7,6 +8,6 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Welcome to Astro.">
   <section>
     <Welcome />
-    <a href="/post">View all posts  ➜</a>
+    <a href={urlFor("/post")}>View all posts  ➜</a>
   </section>
 </Layout>

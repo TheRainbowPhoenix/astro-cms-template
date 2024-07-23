@@ -3,10 +3,12 @@
 import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
-export default defineConfig({
+export const config = {
   output: "static",
   site: 'https://therainbowphoenix.github.io',
   base: 'astro-cms-template',
   integrations: []
-});
+}
+
+// https://astro.build/config
+export default defineConfig(config);

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
+import { urlFor } from "src/utils";
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection("posts", ({ id }) => {
@@ -22,7 +23,7 @@ const { Content } = await entry.render();
     <h1>{entry.data.title}</h1>
     <Content />
 
-    <a class="header" href={"/post/"}>
+    <a class="header" href={urlFor("/post/")}>
         <pre> ⟵ </pre>
         Retour
     </a>

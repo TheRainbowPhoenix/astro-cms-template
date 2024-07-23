@@ -1,4 +1,6 @@
 ---
+import { urlFor } from "src/utils";
+
 ---
 
 <div class="container">
@@ -6,14 +8,14 @@
     <div class="logos__blur"></div>
     <img
       class="logos__entry"
-      src="/astro.svg"
+      src={urlFor("/astro.svg")}
       alt="Astro Logo"
     />
     <span class="logos__plus">+</span>
     <img
       class="logos__entry"
-      src="/sanity.svg"
-      alt="Sanity Logo"
+      src={urlFor("/cms.svg")}
+      alt="CMS Logo"
     />
   </div>
   <div class="steps">
@@ -22,7 +24,7 @@
       <li class="steps__entry">
         <h3 class="steps__subtitle">Publish a post in your Studio</h3>
         <p class="steps__text">
-          Visit the <a href="/admin">Studio</a> and publish a new document of type post.
+          Visit the <a href={urlFor("/admin")}>Studio</a> and publish a new document of type post.
         </p>
       </li>
       <li class="steps__entry">
